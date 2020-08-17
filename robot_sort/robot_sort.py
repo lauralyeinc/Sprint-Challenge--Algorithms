@@ -97,7 +97,31 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        # base case 
+        if not self.can_move_right():
+            return
+
+        # if able to move right, move across the list and pick up the largest item and put it at the end
+        while self.can_move_right():
+            # but if the item is smaller or robot has nothing in hands/claws? 
+            if self.compare_item() == -1 or self.compare_item() == None:
+                self.swap_item()
+                self.move_right()
+            else:
+                self.move_right()
+        # if able to move left, move across the list and pick up the smallest item and put the item at the start of list
+        while self.can_move_left() and self.compare_item() != None:
+            if self.compare_item() == 1:
+                self.swap_item()
+                self.move_left()
+            else:
+                self.move_left()
+
+        # if not able to move left or right on the list.
+        self.swap_item()
+        self.move_right()
+        self.sort()
+        #pass
 
 
 if __name__ == "__main__":
